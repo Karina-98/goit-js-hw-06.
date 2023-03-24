@@ -26,15 +26,26 @@ function onOpenModal(event) {
         return;
     }
     const instance = basicLightbox.create(`
-    <img class="gallery__image" src=
-"${currentItem.dataset.source}" width="800" height="600">
+    <img class="gallery__image" src="${currentItem.dataset.source}" width="800" height="600">
 `)
     
     instance.show()
-    
-  
+    window.addEventListener('keydown', onCloseModalClick);
 
-console.dir(currentItem.nodeName)
 }
+
+
+
+function onCloseModalClick(event) {
+    const openInstance = document.querySelector(".basicLightbox")
+    if (event.code === "Escape") {
+        openInstance.remove();
+        // console.log(openInstance);
+    }
+    window.removeEventListener('keydown', onCloseModalClick);
+   
+   
+}
+
 console.log(galleryItems);
 
